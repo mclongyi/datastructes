@@ -37,6 +37,14 @@ public class SingleLinkedListDemo {
         System.out.println("获取倒数第k个节点");
         HeroNode lastIndexNode = singleLinkedList2.getLastIndexNode(3);
         System.out.println(lastIndexNode);
+        System.out.println("链表的反转:");
+        SingleLinkedList singleLinkedList3=new SingleLinkedList();
+        singleLinkedList3.addByOrder(heroNode1);
+        singleLinkedList3.addByOrder(heroNode4);
+        singleLinkedList3.addByOrder(heroNode2);
+        singleLinkedList3.addByOrder(heroNode3);
+        singleLinkedList3.reverseLinkedList();
+        singleLinkedList3.printfList();
     }
 }
     class HeroNode{
@@ -227,5 +235,32 @@ public class SingleLinkedListDemo {
             heroNode=heroNode.next;
         }
 
+    }
+
+
+     /**
+      * 链表的反转
+      * 思路:
+      */
+    public void reverseLinkedList(){
+        //为空节点 或者只有一个节点
+        if(head.next==null || head.next.next==null){
+            return;
+        }
+        //当前节点
+        HeroNode cur=head.next;
+        //下一个节点
+        HeroNode next=null;
+        //反转头节点
+        HeroNode reverseHead=new HeroNode(0,"","");
+        while (cur!=null){
+            //先保存当前节点的下一个节点
+            next=cur.next;
+            //当前节点指向反转头节点的
+            cur.next=reverseHead.next;
+            reverseHead.next=cur;
+            cur=next;
+        }
+        head.next=reverseHead.next;
     }
 }
