@@ -1,5 +1,7 @@
 package com.ly.sparsearray;
 
+import com.ly.queue.CycleQueue;
+
 import java.util.Scanner;
 
 /**
@@ -56,9 +58,6 @@ public class AppMain {
                     loop=false;
                     break;
             }
-
         }
-
-
     }
 }

@@ -1,4 +1,4 @@
-package com.ly.sparsearray;
+package com.ly.queue;
 
 import java.util.Arrays;
 
@@ -67,6 +67,10 @@ public class CycleQueue<E> {
         return val;
     }
 
+    /**
+     * 获取当前队列有效元素
+     * @return
+     */
     public int getRealSize(){
         return (real+size-front)%size;
     }

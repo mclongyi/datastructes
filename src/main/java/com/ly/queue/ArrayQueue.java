@@ -1,4 +1,4 @@
-package com.ly.sparsearray;
+package com.ly.queue;
 
 import java.util.Arrays;
 import java.util.Objects;
