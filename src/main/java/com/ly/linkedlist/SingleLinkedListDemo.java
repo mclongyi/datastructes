@@ -15,40 +15,55 @@ public class SingleLinkedListDemo {
         HeroNode heroNode2 = new HeroNode(2, "卢俊义", "玉麒麟");
         HeroNode heroNode3 = new HeroNode(3, "吴用", "智多星");
         HeroNode heroNode4= new HeroNode(4, "林冲", "豹子头");
-        SingleLinkedList singleLinkedList=new SingleLinkedList();
-        singleLinkedList.add(heroNode1);
-        singleLinkedList.add(heroNode4);
-        singleLinkedList.add(heroNode2);
-        singleLinkedList.add(heroNode3);
-        singleLinkedList.printfList();
-        System.out.println("顺序插入");
-        SingleLinkedList singleLinkedList2=new SingleLinkedList();
-        singleLinkedList2.addByOrder(heroNode1);
-        singleLinkedList2.addByOrder(heroNode4);
-        singleLinkedList2.addByOrder(heroNode2);
-        singleLinkedList2.addByOrder(heroNode3);
-        singleLinkedList2.printfList();
-        System.out.println("更新节点信息");
-        HeroNode heroNode5 = new HeroNode(2, "卢俊义大将军", "玉麒麟~~~");
-        HeroNode heroNode6 = new HeroNode(1, "宋江", "及时雨");
-        singleLinkedList2.update(heroNode5);
-        singleLinkedList2.printfList();
-        System.out.println("删除节点");
-        singleLinkedList2.deleteNode(heroNode6);
-        singleLinkedList2.printfList();
-        System.out.println("获取倒数第k个节点");
-        HeroNode lastIndexNode = singleLinkedList2.getLastIndexNode(3);
-        System.out.println(lastIndexNode);
-        System.out.println("链表的反转:");
+
+        HeroNode heroNode5 = new HeroNode(1, "宋江2", "及时雨2");
+        HeroNode heroNode6 = new HeroNode(2, "卢俊义2", "玉麒麟2");
+        HeroNode heroNode7 = new HeroNode(3, "吴用2", "智多星2");
+        HeroNode heroNode8= new HeroNode(4, "林冲2", "豹子头2");
+//        SingleLinkedList singleLinkedList=new SingleLinkedList();
+//        singleLinkedList.add(heroNode1);
+//        singleLinkedList.add(heroNode4);
+//        singleLinkedList.add(heroNode2);
+//        singleLinkedList.add(heroNode3);
+//        singleLinkedList.printfList();
+//        System.out.println("顺序插入");
+//        SingleLinkedList singleLinkedList2=new SingleLinkedList();
+//        singleLinkedList2.addByOrder(heroNode1);
+//        singleLinkedList2.addByOrder(heroNode4);
+//        singleLinkedList2.addByOrder(heroNode2);
+//        singleLinkedList2.addByOrder(heroNode3);
+//        singleLinkedList2.printfList();
+//        System.out.println("更新节点信息");
+//        HeroNode heroNode5 = new HeroNode(2, "卢俊义大将军", "玉麒麟~~~");
+//        HeroNode heroNode6 = new HeroNode(1, "宋江", "及时雨");
+//        singleLinkedList2.update(heroNode5);
+//        singleLinkedList2.printfList();
+//        System.out.println("删除节点");
+//        singleLinkedList2.deleteNode(heroNode6);
+//        singleLinkedList2.printfList();
+//        System.out.println("获取倒数第k个节点");
+//        HeroNode lastIndexNode = singleLinkedList2.getLastIndexNode(3);
+//        System.out.println(lastIndexNode);
+//        System.out.println("链表的反转:");
         SingleLinkedList singleLinkedList3=new SingleLinkedList();
-        singleLinkedList3.addByOrder(heroNode1);
-        singleLinkedList3.addByOrder(heroNode4);
-        singleLinkedList3.addByOrder(heroNode2);
-        singleLinkedList3.addByOrder(heroNode3);
+        singleLinkedList3.add(heroNode1);
+        singleLinkedList3.add(heroNode2);
+        singleLinkedList3.add(heroNode4);
+
+        SingleLinkedList singleLinkedList4=new SingleLinkedList();
+        singleLinkedList4.add(heroNode5);
+        singleLinkedList4.add(heroNode7);
+        singleLinkedList4.add(heroNode8);
+
+        SingleLinkedList singleLinkedList5=new SingleLinkedList();
+        singleLinkedList5.mergeLinkList(singleLinkedList3.getHead().next, singleLinkedList4.getHead().next);
+        singleLinkedList5.printfList();
+        //singleLinkedList3.reverseLinkedList();
+        singleLinkedList3.printfList();
         System.out.println("倒叙打印链表");
         singleLinkedList3.printLinkListReverse();
-//        singleLinkedList3.reverseLinkedList();
-//        singleLinkedList3.printfList();
+        //合并两个有序链表
+
 
 
     }
@@ -81,6 +96,10 @@ public class SingleLinkedListDemo {
      * 头节点
      */
     private HeroNode head=new HeroNode(0,"","");
+
+    public HeroNode getHead(){
+        return head;
+    }
 
     /**
      * 添加元素
@@ -289,4 +308,30 @@ public class SingleLinkedListDemo {
             System.out.println(stack.pop());
         }
     }
+
+
+     /**
+      * 合并两个有序链表 合并之后依然有序
+      * @param head1
+      * @param head2
+      * @return
+      */
+    public HeroNode mergeLinkList(HeroNode L1,HeroNode L2){
+
+        HeroNode virtualNode=new HeroNode(-2,"","");
+        HeroNode preNode=virtualNode;
+        while (L1 !=null && L2!=null){
+            if(L1.no <= L2.no){
+                preNode.next=L1;
+                L1=L1.next;
+            }else{
+                preNode.next=L2;
+                L2=L2.next;
+            }
+            preNode=preNode.next;
+        }
+        preNode.next=L1==null?L2:L1;
+        return virtualNode.next;
+    }
+
 }
