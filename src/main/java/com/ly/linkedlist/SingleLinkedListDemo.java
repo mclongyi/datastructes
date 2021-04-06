@@ -1,5 +1,7 @@
 package com.ly.linkedlist;
 
+import java.util.Stack;
+
 /**
  * @className: SingleLinkedList
  * @description: TODO 类描述
@@ -43,8 +45,12 @@ public class SingleLinkedListDemo {
         singleLinkedList3.addByOrder(heroNode4);
         singleLinkedList3.addByOrder(heroNode2);
         singleLinkedList3.addByOrder(heroNode3);
-        singleLinkedList3.reverseLinkedList();
-        singleLinkedList3.printfList();
+        System.out.println("倒叙打印链表");
+        singleLinkedList3.printLinkListReverse();
+//        singleLinkedList3.reverseLinkedList();
+//        singleLinkedList3.printfList();
+
+
     }
 }
     class HeroNode{
@@ -262,5 +268,25 @@ public class SingleLinkedListDemo {
             cur=next;
         }
         head.next=reverseHead.next;
+    }
+
+     /**
+      * 逆序打印链表（通过栈的方式实现）
+      */
+    public void printLinkListReverse(){
+        HeroNode node=head;
+        if(node.next==null){
+            return;
+        }
+        Stack<HeroNode> stack=new Stack<>();
+        node=head.next;
+        while (node !=null){
+            stack.push(node);
+            node=node.next;
+        }
+
+        while (stack.size()>0){
+            System.out.println(stack.pop());
+        }
     }
 }
